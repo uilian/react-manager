@@ -5,6 +5,11 @@ import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
 class LoginForm extends Component {
+  static navigationOptions = {
+    title: 'Please Log In',
+    //header: null,
+  }
+
   onEmailChange(text){
     this.props.emailChanged(text);
   }
@@ -26,7 +31,7 @@ class LoginForm extends Component {
       <Button onPress={this.onButtonPress.bind(this)}>
         Login
       </Button>
-    );    
+    );
   }
 
   render() {
