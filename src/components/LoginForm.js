@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
+
 
 class LoginForm extends Component {
   static navigationOptions = {
     title: 'Please Log In',
+    headerLeft: 
+      <TouchableOpacity style={{ marginLeft: 5, marginRight: 5 }}>
+        <Icon name="rocket" size={30} color="#3b5998" />
+      </TouchableOpacity>,
+    headerRight: 
+      <TouchableOpacity style={{ marginLeft: 5, marginRight: 5 }}>
+        <Icon name="cogs" size={30} color="#3b5998" />
+      </TouchableOpacity>,
     //header: null,
   }
 
@@ -43,7 +54,7 @@ class LoginForm extends Component {
             placeholder="email@gmail.com"
             onChangeText={this.onEmailChange.bind(this)}
             value={this.props.email}
-           />
+           />  
         </CardSection>
         <CardSection>
           <Input
@@ -70,8 +81,13 @@ const styles = {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red'
-  }
+  },
+  buttonStyle: {
+    marginLeft: 5,
+    marginRight: 5
+  },  
 };
+
 
 const mapStateToProps = ({ auth }) => {
   const { email, password, error, loading } = auth;
