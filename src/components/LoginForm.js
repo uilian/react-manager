@@ -10,14 +10,14 @@ import { Card, CardSection, Input, Button, Spinner } from './common';
 class LoginForm extends Component {
   static navigationOptions = {
     title: 'Please Log In',
-    headerLeft: 
-      <TouchableOpacity style={{ marginLeft: 5, marginRight: 5 }}>
-        <Icon name="rocket" size={30} color="#3b5998" />
-      </TouchableOpacity>,
-    headerRight: 
-      <TouchableOpacity style={{ marginLeft: 5, marginRight: 5 }}>
-        <Icon name="cogs" size={30} color="#3b5998" />
-      </TouchableOpacity>,
+    // headerLeft: 
+    //   <TouchableOpacity style={{ marginLeft: 5, marginRight: 5 }}>
+    //     <Icon name="rocket" size={30} color="#3b5998" />
+    //   </TouchableOpacity>,
+    // headerRight: 
+    //   <TouchableOpacity style={{ marginLeft: 5, marginRight: 5 }}>
+    //     <Icon name="cogs" size={30} color="#3b5998" />
+    //   </TouchableOpacity>,
     //header: null,
   }
 
@@ -87,7 +87,6 @@ const styles = {
     marginRight: 5
   },  
 };
-
 
 const mapStateToProps = ({ auth }) => {
   const { email, password, error, loading } = auth;

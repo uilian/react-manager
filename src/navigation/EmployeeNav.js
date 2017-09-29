@@ -3,8 +3,8 @@ import EmployeeList from '../components/EmployeeList';
 import EmployeeDetail from '../components/EmployeeDetail';
 
 const routes = {
-  EmployeeDetail: { screen: EmployeeDetail },
-  EmployeeList: { screen: EmployeeList }
+  EmployeeList: { screen: EmployeeList },
+  EmployeeDetail: { screen: EmployeeDetail }
 };
 
 const stackNavigatorConfiguration = {
