@@ -12,7 +12,7 @@ const routes = {
 };
 
 const stackNavigatorConfiguration = {
-  initialRouteName: 'LoginForm'  
+  initialRouteName: 'LoginForm',  
 };
 
 const RootStack = StackNavigator(routes, stackNavigatorConfiguration);
