@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-
+import { connect, Provider } from 'react-redux';
+import { addNavigationHelpers } from 'react-navigation';
 import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 import reducers from './reducers';
 import RootNav from './navigation/RootNav';
-import logger from 'redux-logger';
-
-let middlewares = [ ReduxThunk, logger ];
 
 class App extends Component {
   componentWillMount(){
@@ -25,14 +23,41 @@ class App extends Component {
   }
 
   render(){
-    const store = createStore(reducers, {}, applyMiddleware(...middlewares));
-
+    const { navigationState, dispatch } = this.props;    
     return (
-      <Provider store={store}>
-        <RootNav />
-      </Provider>
+      <RootNav
+        navigation={
+          addNavigationHelpers({
+            dispatch: dispatch,
+            state: navigationState
+          })
+        }
+      />
     );
   }
 };
 
-export default App;
+// Preparing to glue together App + State + Redux
+const middlewares = [ ReduxThunk, logger ];
+
+const mapStateToProps = (state) => {
+  return {
+    navigationState: state.navigationState,
+  }
+};
+
+const AppWithState = connect(mapStateToProps)(App);
+
+const store = createStore(reducers, {}, applyMiddleware(...middlewares));
+
+class Root extends Component {
+  render() {
+    return (
+      <Provider store={ store }>
+        <AppWithState />
+      </Provider>
+    );
+  }
+}; 
+
+export default Root;

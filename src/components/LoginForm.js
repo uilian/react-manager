@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text } from 'react-native';
 import { connect } from 'react-redux';
-//import Icon from 'react-native-vector-icons/FontAwesome';
-
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
@@ -11,15 +9,6 @@ class LoginForm extends Component {
   static navigationOptions = {
     title: 'Please Log In',
     header: null
-    // headerLeft: 
-    //   <TouchableOpacity style={{ marginLeft: 5, marginRight: 5 }}>
-    //     <Icon name="rocket" size={30} color="#3b5998" />
-    //   </TouchableOpacity>,
-    // headerRight: 
-    //   <TouchableOpacity style={{ marginLeft: 5, marginRight: 5 }}>
-    //     <Icon name="cogs" size={30} color="#3b5998" />
-    //   </TouchableOpacity>,
-    //header: null,
   }
 
   onEmailChange(text){

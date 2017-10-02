@@ -8,7 +8,8 @@ const routes = {
 };
 
 const stackNavigatorConfiguration = {
-  initialRouteName: 'EmployeeList'
+  initialRouteName: 'EmployeeList',
+  headerMode: 'screen'
 };
 
 const EmployeeNav = StackNavigator(routes, stackNavigatorConfiguration);

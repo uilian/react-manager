@@ -1,47 +1,19 @@
-import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import { connect } from 'react-redux';
-import { addNavigationHelpers } from 'react-navigation';
 
 import LoginForm from '../components/LoginForm';
 import EmployeeNav from './EmployeeNav';
 
 const routes = {
   LoginForm: { screen: LoginForm },
-  EmployeeList: { screen: EmployeeNav }
+  Employees: { screen: EmployeeNav }
 };
 
+// No header in the main StackNavigator
 const stackNavigatorConfiguration = {
-  initialRouteName: 'LoginForm',  
+  initialRouteName: 'LoginForm', 
+  headerMode: 'none'
 };
 
-const RootStack = StackNavigator(routes, stackNavigatorConfiguration);
+const RootNav = StackNavigator(routes, stackNavigatorConfiguration);
 
-class RootNav extends Component {
-  render(){
-    const { navigationState, dispatch } = this.props;    
-    return (
-      <RootStack
-        navigation={
-          addNavigationHelpers({
-            dispatch: dispatch,
-            state: navigationState
-          })
-        }
-      />
-    )
-  }
-};
-
-const mapStateToProps = (state) => {
-  return {
-    navigationState: state.navigationState,
-  }
-};
-
-export const NavReducer = (state, action) => {
-  return RootStack.router.getStateForAction(action,state);
-};
-
-export default connect(mapStateToProps)(RootNav);
-
+export default RootNav;

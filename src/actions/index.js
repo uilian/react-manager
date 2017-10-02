@@ -43,11 +43,22 @@ const loginUserFail = (dispatch) => {
   });
 };
 
+const resetNavigation = (routeName) => {
+  return (
+    NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName })
+      ]
+    })
+  );
+};
 
 const loginUserSuccess = (dispatch, user) => {
   dispatch({
     type: LOGIN_USER_SUCCESS,
     payload: user
   });
-  dispatch(NavigationActions.navigate({routeName: 'EmployeeList'}));
+  // Avoid the possibility of navigate back to the LoginForm
+  dispatch(NavigationActions.navigate(resetNavigation('Employees')));
 };
