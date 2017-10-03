@@ -11,7 +11,7 @@ class LoginForm extends Component {
     header: null
   }
 
-  onEmailChange(text){
+  onEmailChange(text) {
     this.props.emailChanged(text);
   }
 
@@ -21,12 +21,12 @@ class LoginForm extends Component {
 
   onButtonPress() {
     const { email, password } = this.props;
-    this.props.loginUser( { email, password });
+    this.props.loginUser({ email, password });
   }
 
   renderButton() {
     if (this.props.loading) {
-      return <Spinner size="large"/>;
+      return <Spinner size="large" />;
     }
     return (
       <Button onPress={this.onButtonPress.bind(this)}>
@@ -36,7 +36,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    return(
+    return (
       <Card>
         <CardSection>
           <Input
@@ -44,7 +44,7 @@ class LoginForm extends Component {
             placeholder="email@gmail.com"
             onChangeText={this.onEmailChange.bind(this)}
             value={this.props.email}
-           />  
+          />  
         </CardSection>
         <CardSection>
           <Input
@@ -53,7 +53,7 @@ class LoginForm extends Component {
             placeholder="password"
             onChangeText={this.onPasswordChange.bind(this)}
             value={this.props.password}
-           />
+          />
         </CardSection>
         <Text style={styles.errorTextStyle}>
           {this.props.error}

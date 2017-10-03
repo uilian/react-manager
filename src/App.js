@@ -10,54 +10,52 @@ import reducers from './reducers';
 import RootNav from './navigation/RootNav';
 
 class App extends Component {
-  componentWillMount(){
+  componentWillMount() {
     const config = {
-      apiKey: 'AIzaSyBtGzj7dpz5FLaSr4J2RqEALraPIkm3Iqk',
-      authDomain: 'manager-25a3a.firebaseapp.com',
-      databaseURL: 'https://manager-25a3a.firebaseio.com',
-      projectId: 'manager-25a3a',
-      storageBucket: 'manager-25a3a.appspot.com',
-      messagingSenderId: '434708860170'
+      apiKey: '',
+      authDomain: '',
+      databaseURL: '',
+      projectId: '',
+      storageBucket: '',
+      messagingSenderId: '',
     };
     firebase.initializeApp(config);
   }
 
-  render(){
+  render() {
     const { navigationState, dispatch } = this.props;    
     return (
       <RootNav
         navigation={
           addNavigationHelpers({
-            dispatch: dispatch,
+            dispatch,
             state: navigationState
           })
         }
       />
     );
   }
-};
+}
 
 // Preparing to glue together App + State + Redux
-const middlewares = [ ReduxThunk, logger ];
+const middlewares = [ReduxThunk, logger];
 
 const mapStateToProps = (state) => {
   return {
     navigationState: state.navigationState,
-  }
+  };
 };
 
 const AppWithState = connect(mapStateToProps)(App);
 
 const store = createStore(reducers, {}, applyMiddleware(...middlewares));
 
-class Root extends Component {
-  render() {
-    return (
-      <Provider store={ store }>
-        <AppWithState />
-      </Provider>
-    );
-  }
+const Root = () => {
+  return (
+    <Provider store={store}>
+      <AppWithState />
+    </Provider>
+  );
 }; 
 
 export default Root;

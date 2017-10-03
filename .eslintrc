@@ -1,0 +1,6 @@
+{
+  "extends": "rallycoding",
+  "globals": {
+    "fetch": true
+  }
+}

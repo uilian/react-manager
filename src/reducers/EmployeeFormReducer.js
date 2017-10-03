@@ -1,4 +1,4 @@
-import { EMPLOYEE_UPDATE } from '../actions/types';
+import { EMPLOYEE_UPDATE, EMPLOYEE_CREATE } from '../actions/types';
 
 const INITIAL_STATE = {
   name: '',
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   shift: ''
 };
 
-export default ( state = INITIAL_STATE, action ) => {
+export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case EMPLOYEE_UPDATE:
       // action.payload === { prop: 'name', value: 'Jane' }
@@ -15,6 +15,8 @@ export default ( state = INITIAL_STATE, action ) => {
       // { ...state, name: action.payload.value }
       // it's called 'key interpolation' in ES6
       return { ...state, [action.payload.prop]: action.payload.value };
+    case EMPLOYEE_CREATE:
+      return { ...state, ...action.payload };
     default:
       return state;
   }
