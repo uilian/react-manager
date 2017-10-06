@@ -2,5 +2,8 @@
   "extends": "rallycoding",
   "globals": {
     "fetch": true
+  },
+  "rules": {
+    "arrow-body-style": ["warn", "as-needed"]
   }
 }
