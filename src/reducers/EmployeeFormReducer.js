@@ -16,7 +16,7 @@ export default (state = INITIAL_STATE, action) => {
       // it's called 'key interpolation' in ES6
       return { ...state, [action.payload.prop]: action.payload.value };
     case EMPLOYEE_CREATE:
-      return { ...state, ...action.payload };
+      return INITIAL_STATE;
     default:
       return state;
   }

@@ -7,6 +7,7 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER
 } from './types';
+import { resetNavigation } from './Util';
 
 export const emailChanged = (text) => {
   return {
@@ -40,17 +41,6 @@ const loginUserFail = (dispatch) => {
   dispatch({
     type: LOGIN_USER_FAIL
   });
-};
-
-const resetNavigation = (routeName) => {
-  return (
-    NavigationActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({ routeName })
-      ]
-    })
-  );
 };
 
 const loginUserSuccess = (dispatch, user) => {
