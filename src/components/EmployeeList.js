@@ -12,24 +12,20 @@ class EmployeeList extends Component {
     headerRight: 
       <TouchableOpacity 
         style={{ marginLeft: 5, marginRight: 5 }}
-        onPress={() => { navigation.navigate('EmployeeCreate'); }} 
+        onPress={() => navigation.navigate('EmployeeCreate')} 
       >
         <Icon name="plus" size={30} color="#3b5998" />
       </TouchableOpacity>,
-    //header: null,    
   });
-
 
   componentWillMount() {
     this.props.employeesFetch();
     this.createDataSource(this.props);
   }  
 
-
   componentWillReceiveProps(nextProps) {
     this.createDataSource(nextProps);
   }
-
   
   createDataSource({ employees }) {
     const ds = new ListView.DataSource({
@@ -38,11 +34,10 @@ class EmployeeList extends Component {
     this.dataSource = ds.cloneWithRows(employees);
   }
 
-  
-  renderRow(employee) {
-    return <ListItem employee={employee} />;
+  renderRow(employee) {    
+    return (
+      <ListItem employee={employee} />);
   }
-  
 
   render() { 
     console.log(this.props);

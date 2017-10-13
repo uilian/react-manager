@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import { NavigationActions } from 'react-navigation';
 import { 
   EMPLOYEE_UPDATE, 
+  EMPLOYEE_EDIT, 
   EMPLOYEE_CREATE,
   EMPLOYEES_FETCH_SUCCESS } from './types';
 import { resetNavigation } from './Util';
@@ -30,8 +31,14 @@ export const employeesFetch = () => {
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees`)
       .on('value', snapshot => {
-        dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val()});
-
+        dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val() });
       });
   };  
+};
+
+export const employeeEdit = () => {
+  return (dispatch) => {
+    //dispatch({ type: EMPLOYEE_EDIT, payload: employee });
+    dispatch(NavigationActions.navigate({ routeName: 'EmployeeCreate' }));
+  };
 };

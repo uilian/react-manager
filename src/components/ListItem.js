@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, View, TouchableWithoutFeedback } from 'react-native';
+import { connect } from 'react-redux';
 import { CardSection } from './common';
+import { employeeEdit } from '../actions';
 
-class ListItem extends Component {
+class ListItem extends Component {  
+
   render() {
     const { name } = this.props.employee;
-
     return (
-      <CardSection>
-        <Text style={styles.titleStyle}> 
-          {name}
-        </Text>
-      </CardSection>
+      <TouchableWithoutFeedback onPress={() => this.props.employeeEdit()}>
+        <View>
+          <CardSection>
+            <Text style={styles.titleStyle}> 
+              {name}
+            </Text>
+          </CardSection>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
-
 
 const styles = {
   titleStyle: {
@@ -24,5 +29,4 @@ const styles = {
   }
 };
 
-
-export default ListItem;
+export default connect(null, { employeeEdit })(ListItem);
