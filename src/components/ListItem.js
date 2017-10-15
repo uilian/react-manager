@@ -6,10 +6,14 @@ import { employeeEdit } from '../actions';
 
 class ListItem extends Component {  
 
+  onRowPress() {
+    this.props.employeeEdit(this.props.employee);
+  }
+
   render() {
     const { name } = this.props.employee;
     return (
-      <TouchableWithoutFeedback onPress={() => this.props.employeeEdit()}>
+      <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View>
           <CardSection>
             <Text style={styles.titleStyle}> 
@@ -29,4 +33,9 @@ const styles = {
   }
 };
 
-export default connect(null, { employeeEdit })(ListItem);
+const mapStateToProps = (state) => {
+  const { name, phone, shift, uid } = state.selectedEmployee;
+  return { name, phone, shift, uid };
+};
+
+export default connect(mapStateToProps, { employeeEdit })(ListItem);

@@ -36,9 +36,9 @@ export const employeesFetch = () => {
   };  
 };
 
-export const employeeEdit = () => {
+export const employeeEdit = (employee) => {
   return (dispatch) => {
-    //dispatch({ type: EMPLOYEE_EDIT, payload: employee });
-    dispatch(NavigationActions.navigate({ routeName: 'EmployeeCreate' }));
+    dispatch({ type: EMPLOYEE_EDIT, payload: employee });
+    dispatch(NavigationActions.navigate({ routeName: 'EmployeeEdit' }));
   };
 };
