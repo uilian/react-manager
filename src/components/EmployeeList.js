@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 import { ListView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
-import { employeesFetch } from '../actions';
+import { employeesFetch, employeeCreate } from '../actions';
 import ListItem from './ListItem';
 
 class EmployeeList extends Component {
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = (props) => ({
     title: 'Employee List',
     headerRight: 
       <TouchableOpacity 
         style={{ marginLeft: 5, marginRight: 5 }}
-        onPress={() => navigation.navigate('EmployeeCreate')} 
+        onPress={() => props.navigation.state.params.employeeCreate()} 
       >
         <Icon name="plus" size={30} color="#3b5998" />
       </TouchableOpacity>,
@@ -23,10 +23,16 @@ class EmployeeList extends Component {
     this.createDataSource(this.props);
   }  
 
+  componentDidMount() {
+    this.props.navigation.setParams({
+      employeeCreate: this.props.employeeCreate.bind(this)
+    });
+  }
+  
   componentWillReceiveProps(nextProps) {
     this.createDataSource(nextProps);
   }
-  
+
   createDataSource({ employees }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
@@ -57,4 +63,4 @@ const mapStateToProps = state => {
   return { employees };
 };
 
-export default connect(mapStateToProps, { employeesFetch })(EmployeeList);
+export default connect(mapStateToProps, { employeesFetch, employeeCreate })(EmployeeList);

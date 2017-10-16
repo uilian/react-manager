@@ -6,7 +6,6 @@ import { employeeUpdate } from '../actions';
 
 class EmployeeForm extends Component {    
   render() { 
-    console.log('from form', this.props);
     return (      
       <View>
         <CardSection> 
@@ -71,5 +70,4 @@ const mapStateToProps = (state) => {
   return { name, phone, shift };
 };
  
-
 export default connect(mapStateToProps, { employeeUpdate })(EmployeeForm);

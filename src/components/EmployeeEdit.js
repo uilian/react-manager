@@ -10,21 +10,12 @@ class EmployeeEdit extends Component {
     title: 'Edit Employee'    
   }
 
-  // componentWillMount() {
-  //   console.log('will mount edit', this.props.employee);
-  //   _.each(this.props.employee, (value, prop) => {
-  //       this.props.employeeUpdate({ prop, value });
-  //   });
-  // }
-
   onButtonPress() {
     const { name, phone, shift, uid } = this.props;    
     console.log('from edit button', name, phone, shift, uid);
-    //this.props.employeeEdit({ name, phone, shift: shift || 'Monday' });
   }
 
   render() { 
-    console.log('from employedit', this.props);
     return (
       <Card>
         <EmployeeForm {...this.props} />

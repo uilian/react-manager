@@ -1,4 +1,9 @@
-import { EMPLOYEE_UPDATE, EMPLOYEE_CREATE } from '../actions/types';
+import { 
+  EMPLOYEE_UPDATE, 
+  EMPLOYEE_SAVE,
+  EMPLOYEE_CREATE, 
+  EMPLOYEE_EDIT 
+} from '../actions/types';
 
 const INITIAL_STATE = {
   name: '',
@@ -15,8 +20,12 @@ export default (state = INITIAL_STATE, action) => {
       // { ...state, name: action.payload.value }
       // it's called 'key interpolation' in ES6
       return { ...state, [action.payload.prop]: action.payload.value };
-    case EMPLOYEE_CREATE:
+    case EMPLOYEE_SAVE:
       return INITIAL_STATE;
+    case EMPLOYEE_CREATE:
+      return INITIAL_STATE;      
+    case EMPLOYEE_EDIT:
+      return action.payload;      
     default:
       return state;
   }

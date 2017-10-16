@@ -12,12 +12,12 @@ import RootNav from './navigation/RootNav';
 class App extends Component {
   componentWillMount() {
     const config = {
-      apiKey: '',
-      authDomain: '',
-      databaseURL: '',
-      projectId: '',
-      storageBucket: '',
-      messagingSenderId: '',
+      apiKey: 'AIzaSyAMJSMJn4xn1TLGwckxM59W_C7Lkbwq3BY',
+      authDomain: 'manager-7cdf4.firebaseapp.com',
+      databaseURL: 'https://manager-7cdf4.firebaseio.com',
+      projectId: 'manager-7cdf4',
+      storageBucket: 'manager-7cdf4.appspot.com',
+      messagingSenderId: '509229020043'
     };
     firebase.initializeApp(config);
   }
