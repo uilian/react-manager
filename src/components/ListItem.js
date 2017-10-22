@@ -33,9 +33,4 @@ const styles = {
   }
 };
 
-const mapStateToProps = (state) => {
-  const { name, phone, shift, uid } = state.selectedEmployee;
-  return { name, phone, shift, uid };
-};
-
-export default connect(mapStateToProps, { employeeEdit })(ListItem);
+export default connect(null, { employeeEdit })(ListItem);

@@ -10,13 +10,6 @@ class EmployeeEdit extends Component {
     title: 'Edit Employee'    
   }
 
-  // componentWillMount() {
-  //   console.log('will mount edit', this.props.employee);
-  //   _.each(this.props.employee, (value, prop) => {
-  //       this.props.employeeUpdate({ prop, value });
-  //   });
-  // }
-
   onButtonPress() {
     const { name, phone, shift, uid } = this.props;    
     this.props.employeeSave({ name, phone, shift, uid });

@@ -2,8 +2,9 @@ import firebase from 'firebase';
 import { NavigationActions } from 'react-navigation';
 import { 
   EMPLOYEE_UPDATE, 
-  EMPLOYEE_EDIT, 
-  EMPLOYEE_CREATE,
+  EMPLOYEE_EDIT,
+  EMPLOYEE_CREATE, 
+  EMPLOYEE_SAVE,
   EMPLOYEES_FETCH_SUCCESS } from './types';
 import { resetNavigation } from './Util';
 
@@ -27,7 +28,7 @@ export const employeeCreate = ({ name, phone, shift }) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees`)
       .push({ name, phone, shift })
       .then(() => { 
-        dispatch({ type: EMPLOYEE_CREATE });
+        dispatch({ type: EMPLOYEE_SAVE });
         dispatch(NavigationActions.navigate(resetNavigation('EmployeeList')));
       });
   };
