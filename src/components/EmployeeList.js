@@ -21,12 +21,6 @@ class EmployeeList extends Component {
     this.setNavigationParams();
   }  
 
-  componentDidMount() {
-    this.props.navigation.setParams({
-      employeeCreate: this.props.employeeCreate.bind(this)
-    });
-  }
-  
   componentWillReceiveProps(nextProps) {
     this.createDataSource(nextProps);
   }

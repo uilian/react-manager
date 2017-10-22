@@ -40,8 +40,8 @@ export const employeeSave = ({ name, phone, shift, uid }) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
       .set({ name, phone, shift })
       .then(() => { 
-        //dispatch({ type: EMPLOYEE_LIST });
-        //dispatch(NavigationActions.navigate(resetNavigation('EmployeeList')));
+        dispatch({ type: EMPLOYEE_SAVE });
+        dispatch(NavigationActions.navigate(resetNavigation('EmployeeList')));
       });
   };
 };
