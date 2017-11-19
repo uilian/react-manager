@@ -35,6 +35,7 @@ export const employeeCreate = ({ name, phone, shift }) => {
 };
 
 export const employeeSave = ({ name, phone, shift, uid }) => {
+  console.log('salvando ', name, phone, uid, shift);
   const { currentUser } = firebase.auth();
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
@@ -60,5 +61,18 @@ export const employeeEdit = (employee) => {
   return (dispatch) => {
     dispatch({ type: EMPLOYEE_EDIT, payload: employee });
     dispatch(NavigationActions.navigate({ routeName: 'EmployeeEdit' }));
+  };
+};
+
+
+export const employeeDelete = ({ uid }) => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+      .remove()
+      .then(() => {
+        dispatch(NavigationActions.navigate(resetNavigation('EmployeeList')));
+      });
   };
 };

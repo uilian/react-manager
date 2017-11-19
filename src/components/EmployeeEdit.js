@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { employeeEdit, employeeSave } from '../actions';
-import { Card, CardSection, Button } from './common';
+import { text } from 'react-native-communications';
+import { employeeEdit, employeeSave, employeeDelete } from '../actions';
+import { Card, CardSection, Button, Confirm } from './common';
 import EmployeeForm from './EmployeeForm';
 
 class EmployeeEdit extends Component {
@@ -10,32 +11,66 @@ class EmployeeEdit extends Component {
     title: 'Edit Employee'    
   }
 
-  onButtonPress() {
+  state = { showModal: false }
+
+  onSavePress() {
     const { name, phone, shift, uid } = this.props;    
     this.props.employeeSave({ name, phone, shift, uid });
-    //this.props.employeeEdit({ name, phone, shift: shift || 'Monday' });
+  }
+
+  onDeletePress() {
+    this.setState({ showModal: !this.state.showModal });
+  }
+
+  onTextMessagePress() {
+    const { name, phone, shift } = this.props;
+    text(phone, `Hi ${name}, your upcoming shift is on ${shift}`);
+  }
+
+  onDecline() {
+    this.setState({ showModal: !this.state.showModal });
+  }
+
+  onAccept() {
+    const { uid } = this.props;
+    this.props.employeeDelete({ uid });
   }
 
   render() { 
     return (
-      <Card>
+      <Card >
         <EmployeeForm {...this.props} />
         <CardSection>
-          <Button onPress={this.onButtonPress.bind(this)}>
+          <Button onPress={this.onSavePress.bind(this)}>
             Save Changes
           </Button>
-          <Button onPress={this.onButtonPress.bind(this)}>
-            Excluir
+        </CardSection>
+        <CardSection>
+          <Button onPress={this.onTextMessagePress.bind(this)}>
+            Send Message
           </Button>
-        </CardSection>        
+        </CardSection>
+        <CardSection>
+          <Button onPress={this.onDeletePress.bind(this)}>
+            Delete
+          </Button>
+        </CardSection>
+        <Confirm
+          visible={this.state.showModal}
+          onAccept={this.onAccept.bind(this)}
+          onDecline={this.onDecline.bind(this)}
+        >
+          Are you sure?
+        </Confirm>
       </Card>
     ); 
   }
 }
 
 const mapStateToProps = (state) => {
-  const { name, phone, shift, uid } = state.selectedEmployee;
+  const { name, phone, shift, uid } = state.employeeForm;
   return { name, phone, shift, uid };
 };
 
-export default connect(mapStateToProps, { employeeEdit, employeeSave })(EmployeeEdit);
+export default connect(
+  mapStateToProps, { employeeEdit, employeeSave, employeeDelete })(EmployeeEdit);
